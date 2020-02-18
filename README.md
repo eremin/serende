@@ -1,7 +1,7 @@
 # SerEnDe
 > PHP serialize() encoder & decoder
 
-##Glossary
+## Contents
 - [Install](#install)
 - [Use](#use)
   - [Decoder](#decoder)
