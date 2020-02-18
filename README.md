@@ -194,11 +194,9 @@ $type->getValue();
 It represents string and as said above content of string will be accessed via `$rawContent` property.
 ```php
 $type = new \Eremin\SerEnDe\Types\StringType();
-$type->setValue("hello \"\\ world!");
+$type->rawContent = "hello \"\\ world!";
 $encoder->encode($type);
 // s:15:"hello "\ world!";
-$type->getValue();
-// string(15) "hello "\ world!"
 ```
 
 #### SerializableObjectType
@@ -222,11 +220,9 @@ class A implements Serializable {
 }
 class B {}
 $type = new \Eremin\SerEnDe\Types\SerializableObjectType();
-$type->setValue(\json_encode(['foo' => 'bar']));
+$type->rawContent = \json_encode(['foo' => 'bar']);
 $encoder->encode($type);
 // C:1:"A":13:{{"foo":"bar"}}
-$type->getValue();
-// {"foo":"bar"}
 $type->className = 'B';
 unserialize($encoder->encode($type));
 // Warning: Class B has no unserializer
