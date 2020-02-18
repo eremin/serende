@@ -1,0 +1,19 @@
+{
+    "name": "eremin/serende",
+    "description": "PHP serialize() encoder & decoder",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anton Eremin",
+            "email": "anton@eremin.de"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Eremin\\SerEnDe\\": "src/"
+        }
+    }
+}
