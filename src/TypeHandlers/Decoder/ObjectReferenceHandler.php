@@ -4,17 +4,17 @@ namespace Eremin\SerEnDe\TypeHandlers\Decoder;
 
 use Eremin\SerEnDe\ReferenceMap;
 use Eremin\SerEnDe\Types\AbstractReferenceType;
-use Eremin\SerEnDe\Types\ReferenceType;
+use Eremin\SerEnDe\Types\ObjectReferenceType;
 
-class ReferenceHandler extends AbstractReferenceHandler
+class ObjectReferenceHandler extends AbstractReferenceHandler
 {
     public function getTypeChar(): string
     {
-        return ReferenceType::TYPE_LETTER;
+        return ObjectReferenceType::TYPE_LETTER;
     }
 
     public function createType(?ReferenceMap $referenceMap): AbstractReferenceType
     {
-        return new ReferenceType();
+        return new ObjectReferenceType();
     }
 }

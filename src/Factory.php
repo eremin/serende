@@ -21,6 +21,7 @@ class Factory
             new DecoderTH\FloatHandler(),
             new DecoderTH\ArrayHandler(),
             new DecoderTH\ReferenceHandler(),
+            new DecoderTH\ObjectReferenceHandler(),
             new DecoderTH\SerializableObjectHandler(),
             new DecoderTH\StringHandler(),
             new DecoderTH\ObjectHandler()
@@ -36,6 +37,7 @@ class Factory
             new EncoderTH\NullHandler(),
             new EncoderTH\FloatHandler(),
             new EncoderTH\ReferenceHandler(),
+            new EncoderTH\ObjectReferenceHandler(),
             new EncoderTH\SerializableObjectHandler(),
             new EncoderTH\StringHandler(),
             new EncoderTH\ObjectHandler()

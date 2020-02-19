@@ -4,6 +4,7 @@ namespace Eremin\SerEnDe;
 
 use Eremin\SerEnDe\TypeHandlers\Encoder as TypeHandlers;
 use Eremin\SerEnDe\TypeHandlers\ReferenceHandlerInterface;
+use Eremin\SerEnDe\Types\AbstractReferenceType;
 use Eremin\SerEnDe\Types\AbstractType;
 
 class EncoderInternal implements EncoderInternalInterface
@@ -33,7 +34,9 @@ class EncoderInternal implements EncoderInternalInterface
 
     public function encodeAndReferenceInternal(AbstractType $type): string
     {
-        $this->referenceMap->addType($type);
+        if (!$type instanceof AbstractReferenceType) {
+            $this->referenceMap->addType($type);
+        }
 
         return $this->encodeInternal($type);
     }
