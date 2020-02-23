@@ -9,7 +9,7 @@ class SerializedString
     public function __construct($resource)
     {
         if (!\is_resource($resource)) {
-            throw new \InvalidArgumentException('This method accepts php streams only');
+            throw new \InvalidArgumentException('This method accepts php streams only.');
         }
         $this->resource = $resource;
         \rewind($this->resource);
@@ -28,7 +28,7 @@ class SerializedString
         $char = $this->readOne();
         if ($char !== $assertedChar) {
             throw new \RuntimeException(
-                "The next one character was not one was specified (got $char, excepted $assertedChar)"
+                "The next one character was not one was specified (got $char, excepted $assertedChar)."
             );
         }
     }
@@ -43,21 +43,29 @@ class SerializedString
         return $char;
     }
 
-    public function readUntil(string $untilChar)
+    public function readUntil(string $untilChar): string
     {
         $result = '';
-        $char = $this->readOne();
 
-        while ($untilChar !== $char) {
+        while (null !== ($char = $this->readOne())) {
+            if ($untilChar === $char) {
+                return $result;
+            }
             $result .= $char;
-            $char = $this->readOne();
         }
 
-        return $result;
+        throw new \RuntimeException('Excepted char was not reached before EOF.');
     }
 
-    public function readByLength(int $length)
+    public function readByLength(int $length): string
     {
-        return \fread($this->resource, $length);
+        if (0 === $length) {
+            return '';
+        }
+        $string = \fread($this->resource, $length);
+        if (false === $string || $length !== \strlen($string)) {
+            throw new \RuntimeException('The stream was too short. Excepted length was not reached.');
+        }
+        return $string;
     }
 }
